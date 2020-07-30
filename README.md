@@ -20,7 +20,9 @@ The container is available from the Docker registry and this is the simplest way
 To run the container use this command:
 
 ```
-$ docker run --privileged  -d \
+$ docker run  --cap-add=NET_ADMIN \
+              --device /dev/net/tun \
+              -d \
               -v /your/config/path/:/config \
               -v /your/downloads/path/:/downloads \
               -e "VPN_ENABLED=yes" \
@@ -29,6 +31,11 @@ $ docker run --privileged  -d \
               -p 8080:8080 \
               -p 8999:8999 \
               -p 8999:8999/udp \
+              -e "VPN_USERNAME=xxxx" \
+              -e "UMASK=xxxx" \
+              -e "VPN_PASSWORD=xxxxxx" \
+              -e "PUID=xxxx" \
+              -e "PGID=xxxx" \
               markusmcnugen/qbittorrentvpn
 ```
 
